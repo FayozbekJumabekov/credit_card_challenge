@@ -1888,10 +1888,6 @@ abstract class _RemoveCard implements HomeEvent {
 /// @nodoc
 mixin _$HomeState {
   CardModel? get cardModel => throw _privateConstructorUsedError;
-  String? get cardImagePath => throw _privateConstructorUsedError;
-  AssetEntity? get assetEntity => throw _privateConstructorUsedError;
-  bool? get isUpdateCard => throw _privateConstructorUsedError;
-  File? get imageFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -1902,12 +1898,7 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call(
-      {CardModel? cardModel,
-      String? cardImagePath,
-      AssetEntity? assetEntity,
-      bool? isUpdateCard,
-      File? imageFile});
+  $Res call({CardModel? cardModel});
 }
 
 /// @nodoc
@@ -1921,32 +1912,12 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   @override
   $Res call({
     Object? cardModel = freezed,
-    Object? cardImagePath = freezed,
-    Object? assetEntity = freezed,
-    Object? isUpdateCard = freezed,
-    Object? imageFile = freezed,
   }) {
     return _then(_value.copyWith(
       cardModel: cardModel == freezed
           ? _value.cardModel
           : cardModel // ignore: cast_nullable_to_non_nullable
               as CardModel?,
-      cardImagePath: cardImagePath == freezed
-          ? _value.cardImagePath
-          : cardImagePath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assetEntity: assetEntity == freezed
-          ? _value.assetEntity
-          : assetEntity // ignore: cast_nullable_to_non_nullable
-              as AssetEntity?,
-      isUpdateCard: isUpdateCard == freezed
-          ? _value.isUpdateCard
-          : isUpdateCard // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imageFile: imageFile == freezed
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as File?,
     ));
   }
 }
@@ -1957,12 +1928,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _$_HomeState value, $Res Function(_$_HomeState) then) =
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {CardModel? cardModel,
-      String? cardImagePath,
-      AssetEntity? assetEntity,
-      bool? isUpdateCard,
-      File? imageFile});
+  $Res call({CardModel? cardModel});
 }
 
 /// @nodoc
@@ -1978,32 +1944,12 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? cardModel = freezed,
-    Object? cardImagePath = freezed,
-    Object? assetEntity = freezed,
-    Object? isUpdateCard = freezed,
-    Object? imageFile = freezed,
   }) {
     return _then(_$_HomeState(
       cardModel: cardModel == freezed
           ? _value.cardModel
           : cardModel // ignore: cast_nullable_to_non_nullable
               as CardModel?,
-      cardImagePath: cardImagePath == freezed
-          ? _value.cardImagePath
-          : cardImagePath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assetEntity: assetEntity == freezed
-          ? _value.assetEntity
-          : assetEntity // ignore: cast_nullable_to_non_nullable
-              as AssetEntity?,
-      isUpdateCard: isUpdateCard == freezed
-          ? _value.isUpdateCard
-          : isUpdateCard // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imageFile: imageFile == freezed
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as File?,
     ));
   }
 }
@@ -2011,33 +1957,15 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState extends _HomeState {
-  const _$_HomeState(
-      {this.cardModel = null,
-      this.cardImagePath = null,
-      this.assetEntity = null,
-      this.isUpdateCard = false,
-      this.imageFile = null})
-      : super._();
+  const _$_HomeState({this.cardModel = null}) : super._();
 
   @override
   @JsonKey()
   final CardModel? cardModel;
-  @override
-  @JsonKey()
-  final String? cardImagePath;
-  @override
-  @JsonKey()
-  final AssetEntity? assetEntity;
-  @override
-  @JsonKey()
-  final bool? isUpdateCard;
-  @override
-  @JsonKey()
-  final File? imageFile;
 
   @override
   String toString() {
-    return 'HomeState(cardModel: $cardModel, cardImagePath: $cardImagePath, assetEntity: $assetEntity, isUpdateCard: $isUpdateCard, imageFile: $imageFile)';
+    return 'HomeState(cardModel: $cardModel)';
   }
 
   @override
@@ -2045,24 +1973,12 @@ class _$_HomeState extends _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
-            const DeepCollectionEquality().equals(other.cardModel, cardModel) &&
-            const DeepCollectionEquality()
-                .equals(other.cardImagePath, cardImagePath) &&
-            const DeepCollectionEquality()
-                .equals(other.assetEntity, assetEntity) &&
-            const DeepCollectionEquality()
-                .equals(other.isUpdateCard, isUpdateCard) &&
-            const DeepCollectionEquality().equals(other.imageFile, imageFile));
+            const DeepCollectionEquality().equals(other.cardModel, cardModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(cardModel),
-      const DeepCollectionEquality().hash(cardImagePath),
-      const DeepCollectionEquality().hash(assetEntity),
-      const DeepCollectionEquality().hash(isUpdateCard),
-      const DeepCollectionEquality().hash(imageFile));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(cardModel));
 
   @JsonKey(ignore: true)
   @override
@@ -2071,24 +1987,11 @@ class _$_HomeState extends _HomeState {
 }
 
 abstract class _HomeState extends HomeState {
-  const factory _HomeState(
-      {final CardModel? cardModel,
-      final String? cardImagePath,
-      final AssetEntity? assetEntity,
-      final bool? isUpdateCard,
-      final File? imageFile}) = _$_HomeState;
+  const factory _HomeState({final CardModel? cardModel}) = _$_HomeState;
   const _HomeState._() : super._();
 
   @override
   CardModel? get cardModel;
-  @override
-  String? get cardImagePath;
-  @override
-  AssetEntity? get assetEntity;
-  @override
-  bool? get isUpdateCard;
-  @override
-  File? get imageFile;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
