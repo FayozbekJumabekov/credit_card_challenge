@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:tenge_bank_task/domain/common/extensions.dart';
 import 'package:tenge_bank_task/infrastructure/models/card/card.dart';
 import 'package:tenge_bank_task/infrastructure/repositories/home_repo.dart';
@@ -82,9 +79,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ..cardNumber = cardModel?.cardNumber
         ..expDate = cardModel?.expDate
         ..cardType = cardModel?.cardType?.toBuilder()
-        ..image = cardModel?.image
+        ..image = null
         ..blur = cardModel?.blur?.toBuilder()
-        ..predefinedImage = cardModel?.predefinedImage
+        ..predefinedImage = null
         ..color = event.colorValue,
     );
 
@@ -104,7 +101,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ..image = null
         ..blur = cardModel?.blur?.toBuilder()
         ..predefinedImage = event.assetValue
-        ..color = cardModel?.color,
+        ..color = null,
     );
 
     emit(state.copyWith(cardModel: cardModel));
@@ -147,7 +144,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           (p0) => p0
             ..cardNumber = cardModel?.cardNumber
             ..expDate = cardModel?.expDate
-            ..color = cardModel?.color
+            ..color = null
             ..cardType = cardModel?.cardType?.toBuilder()
             ..blur = cardModel?.blur?.toBuilder()
             ..predefinedImage = null
@@ -193,5 +190,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(cardModel: null));
       EasyLoading.showSuccess(data?.message ?? "");
     });
+
   }
 }

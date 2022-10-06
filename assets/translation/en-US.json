@@ -14,7 +14,7 @@
   "camera": "Camera",
   "success_saved": "Successfully saved",
   "invalid_card_number": "Invalid card number",
-  "invalid_date_number": "Invalid card number",
+  "invalid_date_number": "Invalid date exp",
   "success_remove": "Successfully removed",
   "ask_remove_card": "Are you sure remove card?",
   "remove_card": "Removing card",

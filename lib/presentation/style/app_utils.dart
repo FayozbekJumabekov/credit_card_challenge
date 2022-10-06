@@ -47,6 +47,8 @@ class AppUtils {
       EdgeInsets.symmetric(horizontal: 16.w);
   static EdgeInsets kPaddingHor32Ver20 =
       EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.h);
+  static EdgeInsets kPaddingHor16Bottom30 =
+      EdgeInsets.only(bottom: 30.h, left: 16.w, right: 16.w);
   static EdgeInsets kPaddingHor16Ver12 =
       EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h);
   static EdgeInsets kPaddingHor12Ver16 =

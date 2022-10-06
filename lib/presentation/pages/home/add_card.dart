@@ -48,15 +48,15 @@ class _AddCardPageState extends State<AddCardPage> {
   @override
   Widget build(BuildContext context) {
     return OnUnFocusTap(
-      child: Scaffold(
-        appBar: AppBarComponent(
-          title: 'add_card'.tr(),
-          hasLeading: true,
-          color: AppColors.primary,
-        ),
-        body: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            return Form(
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBarComponent(
+              title: 'add_card'.tr(),
+              hasLeading: true,
+              color: AppColors.primary,
+            ),
+            body: Form(
               key: formKey,
               child: SingleChildScrollView(
                 padding: AppUtils.kPaddingHor16Ver12,
@@ -81,7 +81,7 @@ class _AddCardPageState extends State<AddCardPage> {
                         validator: (value) {
                           if (value == null ||
                               value.isEmpty ||
-                              value.length < 16) {
+                              value.length <= 18) {
                             return "invalid_card_number".tr();
                           }
                           return null;
@@ -109,7 +109,7 @@ class _AddCardPageState extends State<AddCardPage> {
                               validator: (value) {
                                 if (value == null ||
                                     value.isEmpty ||
-                                    value.length < 4) {
+                                    value.length <= 4) {
                                   return "invalid_date_number".tr();
                                 }
                                 return null;
@@ -121,8 +121,6 @@ class _AddCardPageState extends State<AddCardPage> {
                         /// Add Image Button
                         Expanded(
                           child: CustomButton(
-                            isDisabled: (state.cardModel != null &&
-                                state.cardModel!.color != null),
                             onPressed: () {
                               ImageService.showPicker(context,
                                   cropStyle: CropStyle.rectangle,
@@ -149,21 +147,20 @@ class _AddCardPageState extends State<AddCardPage> {
                     AppUtils.kBoxHeight24,
 
                     /// Set Color
-                    if (state.cardModel?.image == null)
-                      CustomButton(
-                        onPressed: () {
-                          DialogUtils.showColorPickDialog(
-                            context,
-                            okBtnFunction: (color) {
-                              context.read<HomeBloc>().add(
-                                  HomeEvent.setColor(colorValue: color.value));
-                              LogService.w(color.toString());
-                            },
-                          );
-                        },
-                        title: 'set_color'.tr(),
-                        backgroundColor: AppColors.primary,
-                      ),
+                    CustomButton(
+                      onPressed: () {
+                        DialogUtils.showColorPickDialog(
+                          context,
+                          okBtnFunction: (color) {
+                            context.read<HomeBloc>().add(
+                                HomeEvent.setColor(colorValue: color.value));
+                            LogService.w(color.toString());
+                          },
+                        );
+                      },
+                      title: 'set_color'.tr(),
+                      backgroundColor: AppColors.primary,
+                    ),
                     AppUtils.kBoxHeight24,
                     SizedBox(
                       height: 100.h,
@@ -226,27 +223,32 @@ class _AddCardPageState extends State<AddCardPage> {
                       },
                     ),
                     AppUtils.kBoxHeight24,
-
-                    /// Save Button
-                    CustomButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          context.read<HomeBloc>().add(HomeEvent.saveCard(
-                              cardModel: state.cardModel!, context: context));
-                        }
-                      },
-                      isDisabled: cardNumberController.text.isEmpty ||
-                          dateController.text.isEmpty,
-                      title: 'save'.tr(),
-                      backgroundColor: AppColors.primary,
-                      titleColor: AppColors.white,
-                    )
                   ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+
+            /// Save Button
+            bottomNavigationBar: Container(
+              margin: AppUtils.kPaddingHor16Bottom30,
+              color: AppColors.transparent,
+              child: CustomButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    context.read<HomeBloc>().add(HomeEvent.saveCard(
+                        cardModel: state.cardModel!, context: context));
+                  }
+                },
+                isDisabled: cardNumberController.text.isEmpty ||
+                    dateController.text.isEmpty,
+                title: 'save'.tr(),
+                verticalPadding: 12.h,
+                backgroundColor: AppColors.primary,
+                titleColor: AppColors.white,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
