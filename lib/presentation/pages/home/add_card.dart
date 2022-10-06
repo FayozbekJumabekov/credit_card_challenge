@@ -154,7 +154,6 @@ class _AddCardPageState extends State<AddCardPage> {
                           okBtnFunction: (color) {
                             context.read<HomeBloc>().add(
                                 HomeEvent.setColor(colorValue: color.value));
-                            LogService.w(color.toString());
                           },
                         );
                       },
@@ -175,7 +174,11 @@ class _AddCardPageState extends State<AddCardPage> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: AppColors.greyCF),
+                              border: state.cardModel?.predefinedImage ==
+                                      AppIcons.predefinedImages[i]
+                                  ? Border.all(
+                                      color: AppColors.primary, width: 2)
+                                  : Border.all(color: AppColors.greyCF),
                               borderRadius: AppUtils.kBorderRadius8,
                             ),
                             margin: AppUtils.kPaddingAll8,
