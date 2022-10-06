@@ -34,7 +34,7 @@ class AppRoutes {
         builder: (_) => BlocProvider(
           create: (context) => HomeBloc(
             HomeRepository(context.read<DBService>()),
-          )..add(const HomeEvent.getCard()),
+          ),
           child: const HomePage(),
         ),
       );
