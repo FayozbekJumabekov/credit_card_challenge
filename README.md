@@ -1,4 +1,4 @@
-# tenge_bank_task
+# credit card sample 
 
 A new Flutter project.
 
